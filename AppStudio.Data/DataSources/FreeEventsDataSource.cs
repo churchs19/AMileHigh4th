@@ -6,7 +6,7 @@ namespace AppStudio.Data
 {
     public class FreeEventsDataSource : IDataSource<RssSchema>
     {
-        private const string _url =  @"http://www.denver.org/includes/cfcs/syndication/RSS/rssManager.cfc?method=showFeed&feedType=events&e_catID=61";
+        private const string _url = @"http://www.denver.org/includes/cfcs/syndication/RSS/rssManager.cfc?method=showFeed&feedType=events&e_catID=61&e_sortBy=eventDate&e_sDate=7%2F03%2F2014&e_eDate=7%2F06%2F2014";
 
         private IEnumerable<RssSchema> _data = null;
 

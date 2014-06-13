@@ -235,6 +235,7 @@
     <None Include="Properties\AppManifest.xml" />
     <None Include="Properties\WMAppManifest.xml" />
     <None Include="packages.config" />
+    <None Include="RateMyAppGuide_v1 1.pdf" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\AppResources.resx">
@@ -254,6 +255,9 @@
     <Reference Include="MyToolkit, Version=2.0.14.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\MyToolkit.2.0.14.0\lib\portable-win+net40+sl40+wp71\MyToolkit.dll</HintPath>
+    </Reference>
+    <Reference Include="RateMyApp">
+      <HintPath>..\packages\RateMyApp.1.1.0\lib\sl4-wp71\RateMyApp.dll</HintPath>
     </Reference>
     <Reference Include="WPAppStudio.Shared2.dll">
       <HintPath>..\Lib\WPAppStudio.Shared2.dll</HintPath>

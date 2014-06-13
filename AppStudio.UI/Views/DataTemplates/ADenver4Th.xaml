@@ -11,7 +11,7 @@
 
     <DataTemplate x:Name="ADenver4ThContent">
         <Grid Margin="5" DataContext="{Binding Items[0]}">
-            <mytoolkit:HtmlTextBlock Margin="10,0" Html="{Binding Content}" FontSize="26" Foreground="{StaticResource AppForegroundColor}"/>
+            <mytoolkit:HtmlTextBlock Margin="0,0" Html="{Binding Content}" FontSize="26" Foreground="{StaticResource AppForegroundColor}"/>
         </Grid>
     </DataTemplate>
 
