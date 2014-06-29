@@ -1,0 +1,96 @@
+﻿<UserControl x:Class="AppStudio.Views.Controls.FeaturedEventsMap"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:maps="clr-namespace:Microsoft.Phone.Maps.Controls;assembly=Microsoft.Phone.Maps"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    xmlns:maptk="clr-namespace:Microsoft.Phone.Maps.Toolkit;assembly=Microsoft.Phone.Controls.Toolkit"
+    xmlns:telerikPrimitives="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Primitives"
+    xmlns:telerikConverters="clr-namespace:Telerik.Windows.Controls.Converters;assembly=Telerik.Windows.Core"
+    xmlns:converters="clr-namespace:AppStudio.Converters"
+    mc:Ignorable="d"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    d:DesignHeight="480" d:DesignWidth="480" Loaded="UserControl_Loaded">
+
+    <UserControl.Resources>
+        <converters:BooleanToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
+        <converters:DoubleToNegativeMarginHeightConverter x:Key="MarginConverter"/>
+        <DataTemplate x:Key="PushpinTemplate">
+            <StackPanel Orientation="Vertical" 
+                        HorizontalAlignment="Center"
+                        x:Name="PushpinContainer" RenderTransformOrigin="0,1">
+                <TextBlock x:Name="EventName"
+                           Text="{Binding Event_Name}" 
+                           Tap="EventName_Tap"
+                           Tag="{Binding}"/>
+                <StackPanel Orientation="Vertical"
+                            HorizontalAlignment="Center"
+                            Visibility="{Binding IsSelected, Converter={StaticResource BoolToVisibilityConverter}}"
+                            x:Name="DetailsPanel">
+                    <Image Source="{Binding Event_Image}" MaxHeight="200" MaxWidth="150"/>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <telerikPrimitives:RadImageButton x:Name="buttonEventLink" 
+													  Grid.Column="0"
+												      ButtonShape="Ellipse" 
+													  ButtonType="Custom" 
+													  RestStateImageSource="/AppStudio;component/Assets/Web.png"
+                                                      Command="{Binding EventLinkCommand}"
+                                                      CommandParameter="{Binding}"/>
+                        <telerikPrimitives:RadImageButton x:Name="buttonDirections"
+													  Grid.Column="1" 
+												      ButtonShape="Ellipse" 
+													  ButtonType="Custom" 
+													  RestStateImageSource="/AppStudio;component/Assets/Directions.png"
+                                                      Command="{Binding DirectionsCommand}"
+                                                      CommandParameter="{Binding}"/>
+                        <telerikPrimitives:RadImageButton x:Name="buttonShare" 
+													  Grid.Column="2"
+												      ButtonShape="Ellipse" 
+													  ButtonType="Custom" 
+													  RestStateImageSource="/AppStudio;component/Assets/Share-01.png"
+                                                      Command="{Binding ShareCommand}"
+                                                      CommandParameter="{Binding}"/>
+                        <telerikPrimitives:RadImageButton x:Name="buttonSharePicture" 
+													  Grid.Column="3"
+												      ButtonShape="Ellipse" 
+													  ButtonType="Custom" 
+													  RestStateImageSource="/AppStudio;component/Assets/Camera-01.png"
+                                                      Command="{Binding SharePhotoCommand}"
+                                                      CommandParameter="{Binding}"/>
+                    </Grid>
+                </StackPanel>
+            </StackPanel>
+        </DataTemplate>
+    </UserControl.Resources>
+
+    <Grid x:Name="LayoutRoot" Background="{StaticResource TransparentBrush}">
+        <maps:Map x:Name="EventsMap"
+                              CartographicMode="Road"
+                              Center="39.74001,-104.9923"
+                              ZoomLevel="10"
+                              Loaded="EventsMap_Loaded"
+                              LandmarksEnabled="True"
+                              Margin="10">
+            <maptk:MapExtensions.Children>
+                <maptk:MapItemsControl x:Name="MapPins">
+                    <maptk:MapItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <maptk:Pushpin x:Name="Pin" GeoCoordinate="{Binding GeoCoordinate}" Content="{Binding}" ContentTemplate="{StaticResource PushpinTemplate}" Margin="{Binding ActualHeight, Mode=OneWay, RelativeSource={RelativeSource Self}, Converter={StaticResource MarginConverter}}">
+                            </maptk:Pushpin>
+                        </DataTemplate>
+                    </maptk:MapItemsControl.ItemTemplate>
+                </maptk:MapItemsControl>
+                <maptk:UserLocationMarker x:Name="UserLocationMarker" Visibility="Visible" GeoCoordinate="{Binding UserLocation}" />
+            </maptk:MapExtensions.Children>
+        </maps:Map>
+    </Grid>
+</UserControl>

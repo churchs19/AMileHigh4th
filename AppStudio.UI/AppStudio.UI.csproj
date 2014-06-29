@@ -27,6 +27,7 @@
     <ThrowErrorsInValidation>true</ThrowErrorsInValidation>
     <RestorePackages>true</RestorePackages>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <ExpressionBlendVersion>12.0.50429.0</ExpressionBlendVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -95,6 +96,14 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Commands\DirectionsCommand.cs" />
+    <Compile Include="Commands\EventLinkCommand.cs" />
+    <Compile Include="Commands\ShareCommand.cs" />
+    <Compile Include="Commands\SharePhotoCommand.cs" />
+    <Compile Include="Converters\BooleanToVisibilityConverter.cs" />
+    <Compile Include="Converters\DoubleToNegativeMarginHeightConverter.cs" />
+    <Compile Include="Extensions\DistanceExtensions.cs" />
+    <Compile Include="Extensions\MapExtensions.cs" />
     <Compile Include="Resources\AppResources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -102,6 +111,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Assets\Camera-01.png" />
     <Content Include="Assets\Icons\Dark\GoToSource.png" />
     <Content Include="Assets\Icons\Dark\LockScreen.png" />
     <Content Include="Assets\Icons\Dark\PinToStart.png" />
@@ -116,6 +126,7 @@
     <Content Include="Assets\Icons\Light\TextToSpeech.png" />
     <Content Include="Assets\AlignmentGrid.png" />
     <Content Include="Assets\NoImage.png" />
+    <Resource Include="Assets\Web.png" />
     <Content Include="Views\DataTemplates\ADenver4Th.xaml" />
     <Content Include="Views\DataTemplates\FeaturedEvents.xaml" />
     <Content Include="Views\DataTemplates\FeaturedEvents1Detail.xaml" />
@@ -149,6 +160,7 @@
     <Compile Include="Converters\TextPlainConverter.cs" />
     <Compile Include="Converters\ThumbnailConverter.cs" />
     <Compile Include="Resources\LocalizedStrings.cs" />
+    <Compile Include="Services\ImageServices.cs" />
     <Compile Include="Services\LockScreenServices.cs" />
     <Compile Include="Services\NavigationServices.cs" />
     <Compile Include="Services\NokiaMapsServices.cs" />
@@ -158,6 +170,7 @@
     <Compile Include="Services\SpeechServices.cs" />
     <Compile Include="Services\TileServices.cs" />
     <Compile Include="ViewModels\AboutThisAppViewModel.cs" />
+    <Compile Include="ViewModels\FeaturedEventsMapViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\ADenver4ThViewModel.cs" />
     <Compile Include="ViewModels\FeaturedEventsViewModel.cs" />
@@ -169,6 +182,9 @@
   <ItemGroup>
     <Compile Include="Views\AboutThisAppPage.xaml.cs">
       <DependentUpon>AboutThisAppPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controls\FeaturedEventsMap.xaml.cs">
+      <DependentUpon>FeaturedEventsMap.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ImageViewer.xaml.cs">
       <DependentUpon>ImageViewer.xaml</DependentUpon>
@@ -195,6 +211,10 @@
       <Generator>MSBuild:Compile</Generator>
     </ApplicationDefinition>
     <Page Include="Views\AboutThisAppPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Controls\FeaturedEventsMap.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -259,6 +279,14 @@
     <Reference Include="RateMyApp">
       <HintPath>..\packages\RateMyApp.1.1.0\lib\sl4-wp71\RateMyApp.dll</HintPath>
     </Reference>
+    <Reference Include="Telerik.Windows.Controls.Primitives, Version=2014.2.617.3040, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <HintPath>..\lib\RCWP\2014.2.617.3040\Telerik.Windows.Controls.Primitives.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Telerik.Windows.Core, Version=2014.2.617.3040, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <HintPath>..\lib\RCWP\2014.2.617.3040\Telerik.Windows.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="WPAppStudio.Shared2.dll">
       <HintPath>..\Lib\WPAppStudio.Shared2.dll</HintPath>
     </Reference>
@@ -290,6 +318,10 @@
       <Project>{bffa0508-fced-4fbc-897b-12b7d085696e}</Project>
       <Name>AppStudio.BackgroundAgent</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Directions.png" />
+    <Resource Include="Assets\Share-01.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).$(TargetFrameworkVersion).Overrides.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).CSharp.targets" />

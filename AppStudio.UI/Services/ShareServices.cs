@@ -96,10 +96,9 @@ namespace AppStudio.Services
                 && IsValidMedia(image))
                 result.Add(ShareTypeEnum.ShareImage);
 
-            // TODO: Uncomment to allow Share Status
-            //if (!string.IsNullOrEmpty(title)
-            //    || !string.IsNullOrEmpty(message))
-            //    result.Add(ShareTypeEnum.ShareStatus);
+            if (!string.IsNullOrEmpty(title)
+                || !string.IsNullOrEmpty(message))
+                result.Add(ShareTypeEnum.ShareStatus);
 
             if (!string.IsNullOrEmpty(title)
                 && !string.IsNullOrEmpty(message))

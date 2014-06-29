@@ -1,4 +1,6 @@
 using System;
+using System.Device.Location;
+using System.Windows.Input;
 
 namespace AppStudio.Data
 {
@@ -15,6 +17,8 @@ namespace AppStudio.Data
         private string _link_1;
         private string _link_2;
         private string _event_Image;
+        private double _latitude = 39.74001;
+        private double _longitude = -104.9923;
          
         public string Event_Name
         {
@@ -64,6 +68,55 @@ namespace AppStudio.Data
             set { SetProperty(ref _event_Image, value); }
         }
 
+        public double Latitude
+        {
+            get { return _latitude; }
+            set
+            {
+                if (SetProperty(ref _latitude, value))
+                {
+                    OnPropertyChanged("GeoCoordinate");
+                }
+            }
+        }
+
+        public double Longitude
+        {
+            get { return _longitude; }
+            set 
+            { 
+                if(SetProperty(ref _longitude, value))
+                {
+                    OnPropertyChanged("GeoCoordinate");
+                }
+            }
+        }
+
+        public bool IsFree
+        {
+            get { return Event_Cost.ToLower() == "free"; }
+        }
+
+        public GeoCoordinate GeoCoordinate
+        {
+            get
+            {
+                return new GeoCoordinate(Latitude, Longitude);
+            }
+        }
+
+        private bool _isSelected;
+        public bool IsSelected
+        {
+            get { return _isSelected; }
+            set { SetProperty(ref _isSelected, value); }
+        }
+
+        public ICommand DirectionsCommand { get; set; }
+        public ICommand ShareCommand { get; set; }
+        public ICommand SharePhotoCommand { get; set; }
+        public ICommand EventLinkCommand { get; set; }
+
         public override string DefaultTitle
         {
             get { return Event_Name; }
@@ -101,12 +154,20 @@ namespace AppStudio.Data
                         return String.Format("{0}", Link_2); 
                     case "event_image":
                         return String.Format("{0}", Event_Image); 
+                    case "isfree":
+                        return String.Format("{0}", IsFree);
                     case "defaulttitle":
                         return DefaultTitle;
                     case "defaultsummary":
                         return DefaultSummary;
                     case "defaultimageurl":
                         return DefaultImageUrl;
+                    case "latitude":
+                        return String.Format("{0}", Latitude);
+                    case "longitude":
+                        return String.Format("{0}", Longitude);
+                    case "geocoordinate":
+                        return String.Format("{0}", GeoCoordinate);
                     default:
                         break;
                 }

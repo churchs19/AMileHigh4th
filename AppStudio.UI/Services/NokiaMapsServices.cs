@@ -13,6 +13,18 @@ namespace AppStudio.Services
 {
     static public class NokiaMapsServices
     {
+        private static GeoCoordinateWatcher _positionWatcher;
+
+        static public GeoCoordinateWatcher GetPositionWatcher()
+        {
+            if(_positionWatcher == null)
+            {
+                _positionWatcher = new GeoCoordinateWatcher();
+                _positionWatcher.Start();
+            }
+            return _positionWatcher;
+        }
+
         static public void MapPosition(string address)
         {
             var geoQ = new GeocodeQuery();

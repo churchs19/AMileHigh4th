@@ -7,8 +7,11 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    xmlns:maptk="clr-namespace:Microsoft.Phone.Maps.Toolkit;assembly=Microsoft.Phone.Controls.Toolkit"
     xmlns:appBar="clr-namespace:Cimbalino.Phone.Toolkit.Behaviors;assembly=Cimbalino.Phone.Toolkit"
     xmlns:interactive="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+    xmlns:maps="clr-namespace:Microsoft.Phone.Maps.Controls;assembly=Microsoft.Phone.Maps"
+    xmlns:this="clr-namespace:AppStudio.Views.Controls"
     Foreground="{StaticResource AppForegroundColor}"
     SupportedOrientations="Portrait" Orientation="Portrait"
     shell:SystemTray.IsVisible="False"
@@ -40,9 +43,22 @@
                       Background="{StaticResource AppBackground}" TitleTemplate="{StaticResource AppPanoramaTitle}">
           <phone:PanoramaItem Name="ADenver4ThItem" HeaderTemplate="{StaticResource ADenver4ThHeader}" Content="{Binding ADenver4ThModel}" ContentTemplate="{StaticResource ADenver4ThContent}"/>
           <phone:PanoramaItem Name="FeaturedEventsItem" HeaderTemplate="{StaticResource FeaturedEventsHeader}" Content="{Binding FeaturedEventsModel}" ContentTemplate="{StaticResource FeaturedEventsContent}"/>
+            <phone:PanoramaItem Name="FeaturedEventsMapItem" Content="{Binding FeaturedEventsMapModel}">
+                <phone:PanoramaItem.HeaderTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal" Margin="0,7,0,0">
+                            <TextBlock Text="Map" FontSize="56" Foreground="{StaticResource AppForegroundColor}"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </phone:PanoramaItem.HeaderTemplate>
+                <phone:PanoramaItem.ContentTemplate>
+                    <DataTemplate>
+                        <this:FeaturedEventsMap x:Name="FeaturedEventsMap"/>
+                    </DataTemplate>
+                </phone:PanoramaItem.ContentTemplate>
+            </phone:PanoramaItem>
           <phone:PanoramaItem Name="AllEventsItem" HeaderTemplate="{StaticResource AllEventsHeader}" Content="{Binding AllEventsModel}" ContentTemplate="{StaticResource AllEventsContent}"/>
           <phone:PanoramaItem Name="FreeEventsItem" HeaderTemplate="{StaticResource FreeEventsHeader}" Content="{Binding FreeEventsModel}" ContentTemplate="{StaticResource FreeEventsContent}"/>
-          <phone:PanoramaItem Name="PhotosItem" HeaderTemplate="{StaticResource PhotosHeader}" Content="{Binding PhotosModel}" ContentTemplate="{StaticResource PhotosContent}"/>
       </phone:Panorama>
 
       <ProgressBar Grid.Row="0" IsIndeterminate="True" Foreground="{StaticResource AppForegroundColor}" VerticalAlignment="Center" Height="16"

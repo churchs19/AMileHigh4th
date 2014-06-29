@@ -10,9 +10,9 @@ namespace AppStudio
     {
        private ADenver4ThViewModel _aDenver4ThModel;
        private FeaturedEventsViewModel _featuredEventsModel;
+       private FeaturedEventsMapViewModel _featuredEventsMapModel;
        private AllEventsViewModel _allEventsModel;
        private FreeEventsViewModel _freeEventsModel;
-       private PhotosViewModel _photosModel;
        private MenuSectionViewModel _menuSectionModel;
 
         private ViewModelBase _selectedItem = null;
@@ -31,6 +31,11 @@ namespace AppStudio
         {
             get { return _featuredEventsModel ?? (_featuredEventsModel = new FeaturedEventsViewModel()); }
         }
+
+        public FeaturedEventsMapViewModel FeaturedEventsMapModel
+        {
+            get { return _featuredEventsMapModel ?? (_featuredEventsMapModel = new FeaturedEventsMapViewModel()); }
+        }
  
         public AllEventsViewModel AllEventsModel
         {
@@ -41,12 +46,7 @@ namespace AppStudio
         {
             get { return _freeEventsModel ?? (_freeEventsModel = new FreeEventsViewModel()); }
         }
- 
-        public PhotosViewModel PhotosModel
-        {
-            get { return _photosModel ?? (_photosModel = new PhotosViewModel()); }
-        }
- 
+  
         public MenuSectionViewModel MenuSectionModel
         {
             get { return _menuSectionModel ?? (_menuSectionModel = new MenuSectionViewModel()); }
@@ -56,9 +56,9 @@ namespace AppStudio
         {
             ADenver4ThModel.ViewType = viewType;
             FeaturedEventsModel.ViewType = viewType;
+            FeaturedEventsMapModel.ViewType = viewType;
             AllEventsModel.ViewType = viewType;
             FreeEventsModel.ViewType = viewType;
-            PhotosModel.ViewType = viewType;
             MenuSectionModel.ViewType = viewType;
         }
 
@@ -110,9 +110,9 @@ namespace AppStudio
             { 
                 ADenver4ThModel.LoadItems(isNetworkAvailable),
                 FeaturedEventsModel.LoadItems(isNetworkAvailable),
+                FeaturedEventsMapModel.LoadItems(isNetworkAvailable),
                 AllEventsModel.LoadItems(isNetworkAvailable),
                 FreeEventsModel.LoadItems(isNetworkAvailable),
-                PhotosModel.LoadItems(isNetworkAvailable),
                 MenuSectionModel.LoadItems(isNetworkAvailable),
             };
             await Task.WhenAll(loadTasks);

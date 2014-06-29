@@ -1,7 +1,7 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Deployment xmlns="http://schemas.microsoft.com/windowsphone/2012/deployment" AppPlatformVersion="8.0">
-  <DefaultLanguage xmlns="" code="en-US"/>
-  <App xmlns="" ProductID="{52af1879-54ae-4c2b-b21a-1ffde7285b02}" Title="A Mile High 4th" RuntimeType="Silverlight" Version="1.0.1.0" Genre="apps.normal"  Author="Windows Phone AppStudio" Description="There’s no better place to be over the 4th of July than in Denver! You’ll be treated to festivals, concerts, pro sports – and of course all the brilliant fireworks displays you could ever wish for." Publisher="Windows Phone AppStudio" PublisherID="{a82f2314-09fd-4018-8657-ac13d334a0c8}">
+  <DefaultLanguage xmlns="" code="en-US" />
+  <App xmlns="" ProductID="{52af1879-54ae-4c2b-b21a-1ffde7285b02}" Title="A Mile High 4th" RuntimeType="Silverlight" Version="1.0.1.0" Genre="apps.normal" Author="Windows Phone AppStudio" Description="There’s no better place to be over the 4th of July than in Denver! You’ll be treated to festivals, concerts, pro sports – and of course all the brilliant fireworks displays you could ever wish for." Publisher="Windows Phone AppStudio" PublisherID="{a82f2314-09fd-4018-8657-ac13d334a0c8}">
     <IconPath IsRelative="true" IsResource="false">Assets/ApplicationIcon.png</IconPath>
     <Capabilities>
       <Capability Name="ID_CAP_NETWORKING" />
@@ -14,21 +14,34 @@
       <Capability Name="ID_CAP_IDENTITY_USER" />
       <Capability Name="ID_CAP_MAP" />
       <Capability Name="ID_CAP_MEDIALIB_PHOTO" />
-
       <Capability Name="ID_CAP_MEDIALIB_PLAYBACK" />
     </Capabilities>
     <Tasks>
-      <DefaultTask  Name ="_default" NavigationPage="Views/MainPage.xaml" ActivationPolicy="Resume"/>
+      <DefaultTask Name="_default" NavigationPage="Views/MainPage.xaml" ActivationPolicy="Resume" />
     </Tasks>
     <Tokens>
       <PrimaryToken TokenID="AppStudio.UIToken" TaskName="_default">
-        <TemplateCycle>
-          <SmallImageURI IsRelative="true" IsResource="false">Assets/Tiles/SmallIcon.png</SmallImageURI>
-          <Title>A Mile High 4th</Title>
-          <Count></Count>
+        <TemplateFlip>
+          <SmallImageURI IsRelative="true" IsResource="false">Assets\ApplicationLogo.png</SmallImageURI>
+          <Count>0</Count>
+          <BackgroundImageURI IsRelative="true" IsResource="false">Assets\ApplicationIcon.png</BackgroundImageURI>
+          <Title>
+          </Title>
+          <BackContent>
+          </BackContent>
+          <BackBackgroundImageURI IsRelative="true" IsResource="false">
+          </BackBackgroundImageURI>
+          <BackTitle>
+          </BackTitle>
+          <LargeBackgroundImageURI IsRelative="true" IsResource="false">
+          </LargeBackgroundImageURI>
+          <LargeBackContent />
+          <LargeBackBackgroundImageURI IsRelative="true" IsResource="false">
+          </LargeBackBackgroundImageURI>
+          <DeviceLockImageURI IsRelative="true" IsResource="false">
+          </DeviceLockImageURI>
           <HasLarge>True</HasLarge>
-          <DeviceLockImageURI IsRelative="true" IsResource="false"/>
-        </TemplateCycle>
+        </TemplateFlip>
       </PrimaryToken>
     </Tokens>
     <Extensions>
@@ -37,9 +50,9 @@
       <Extension ExtensionName="LockScreen_Background" ConsumerID="{111DFF24-AA15-4A96-8006-2BFF8122084F}" TaskID="_default" />
     </Extensions>
     <ScreenResolutions>
-      <ScreenResolution Name="ID_RESOLUTION_WVGA"/>
-      <ScreenResolution Name="ID_RESOLUTION_WXGA"/>
-      <ScreenResolution Name="ID_RESOLUTION_HD720P"/>
+      <ScreenResolution Name="ID_RESOLUTION_WVGA" />
+      <ScreenResolution Name="ID_RESOLUTION_WXGA" />
+      <ScreenResolution Name="ID_RESOLUTION_HD720P" />
     </ScreenResolutions>
   </App>
 </Deployment>
