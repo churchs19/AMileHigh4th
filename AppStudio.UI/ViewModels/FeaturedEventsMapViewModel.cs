@@ -89,6 +89,7 @@ namespace AppStudio.Data
                 {
                     FilterItems();
                     OnPropertyChanged("FilterTypeImage");
+                    OnPropertyChanged("FilterLabel");
                 }
             }
         }
@@ -143,6 +144,14 @@ namespace AppStudio.Data
                     return "/Assets/PaidFilter.png";
                 else
                     return "/Assets/FreeFilter.png";
+            }
+        }
+
+        public override string FilterLabel
+        {
+            get
+            {
+                return EventType.ToString();
             }
         }
 

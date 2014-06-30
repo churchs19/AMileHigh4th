@@ -68,6 +68,8 @@ namespace AppStudio.Data
                         return DefaultSummary;
                     case "defaultimageurl":
                         return DefaultImageUrl;
+                    case "defaultwideimageurl":
+                        return String.Format("{0}", DefaultWideImageUrl);
                     default:
                         break;
                 }

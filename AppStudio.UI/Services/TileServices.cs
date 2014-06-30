@@ -36,7 +36,7 @@ namespace AppStudio.Services
         {
             await PopulateImages(tileInfo);
             var tileData = CreateTileData(tileInfo);
-            ShellTile.Create(new Uri(url, UriKind.Relative), tileData);
+            ShellTile.Create(new Uri(url, UriKind.Relative), tileData, !string.IsNullOrEmpty(tileInfo.WideBackgroundImagePath));
         }
 
         static private async void UpdateTile(string url, TileInfo tileInfo)
@@ -50,16 +50,20 @@ namespace AppStudio.Services
             }
         }
 
-        static private StandardTileData CreateTileData(TileInfo tileInfo)
+        static private FlipTileData CreateTileData(TileInfo tileInfo)
         {
-            return new StandardTileData
+            return new FlipTileData
             {
                 Title = HtmlUtil.CleanHtml(tileInfo.Title),
                 Count = tileInfo.Count,
                 BackTitle = HtmlUtil.CleanHtml(tileInfo.BackTitle),
                 BackContent = HtmlUtil.CleanHtml(tileInfo.BackContent),
                 BackgroundImage = String.IsNullOrEmpty(tileInfo.BackgroundImagePath) ? null : new Uri(tileInfo.BackgroundImagePath, UriKind.RelativeOrAbsolute),
-                BackBackgroundImage = String.IsNullOrEmpty(tileInfo.BackBackgroundImagePath) ? null : new Uri(tileInfo.BackBackgroundImagePath, UriKind.RelativeOrAbsolute)
+                BackBackgroundImage = String.IsNullOrEmpty(tileInfo.BackBackgroundImagePath) ? null : new Uri(tileInfo.BackBackgroundImagePath, UriKind.RelativeOrAbsolute),
+                WideBackgroundImage = String.IsNullOrEmpty(tileInfo.WideBackgroundImagePath) ? null : new Uri(tileInfo.WideBackgroundImagePath, UriKind.RelativeOrAbsolute),
+                WideBackBackgroundImage = String.IsNullOrEmpty(tileInfo.WideBackBackgroundImagePath) ? null : new Uri(tileInfo.WideBackBackgroundImagePath, UriKind.RelativeOrAbsolute),
+                WideBackContent = HtmlUtil.CleanHtml(tileInfo.BackContent),
+                SmallBackgroundImage = String.IsNullOrEmpty(tileInfo.BackBackgroundImagePath) ? null : new Uri(tileInfo.BackBackgroundImagePath, UriKind.RelativeOrAbsolute)
             };
         }
 
@@ -72,6 +76,14 @@ namespace AppStudio.Services
             if (!String.IsNullOrEmpty(tileInfo.BackBackgroundImagePath))
             {
                 tileInfo.BackBackgroundImagePath = await PopulateImage(tileInfo.BackBackgroundImagePath);
+            }
+            if (!String.IsNullOrEmpty(tileInfo.WideBackgroundImagePath))
+            {
+                tileInfo.WideBackgroundImagePath = await PopulateImage(tileInfo.WideBackgroundImagePath);
+            }
+            if (!String.IsNullOrEmpty(tileInfo.WideBackBackgroundImagePath))
+            {
+                tileInfo.WideBackBackgroundImagePath = await PopulateImage(tileInfo.WideBackBackgroundImagePath);
             }
         }
 
@@ -152,6 +164,14 @@ namespace AppStudio.Services
             /// Gets/Sets the background image of the back side of the tile.
             /// </summary>
             public string BackBackgroundImagePath { get; set; }
+            /// <summary>
+            /// Gets/Sets the background image of the tile.
+            /// </summary>
+            public string WideBackgroundImagePath { get; set; }
+            /// <summary>
+            /// Gets/Sets the background image of the back side of the tile.
+            /// </summary>
+            public string WideBackBackgroundImagePath { get; set; }
             /// <summary>
             /// Gets/Sets the counter for tile notifications.
             /// </summary>

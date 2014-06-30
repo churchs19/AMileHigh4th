@@ -9,7 +9,11 @@ namespace AppStudio.Data.DataSchemas
     public abstract class BindableLinkSchemaBase : BindableSchemaBase
     {
         public abstract string DefaultLink { get; }
+        public virtual string DefaultWideImageUrl
+        {
+            get { return DefaultImageUrl; }
+        }
 
-        public string IAmGoing { get { return "I'm going to " + DefaultTitle; } }
+        public virtual string IAmGoing { get { return "I'm going to " + DefaultTitle; } }
     }
 }

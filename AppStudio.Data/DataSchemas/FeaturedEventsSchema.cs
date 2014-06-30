@@ -174,6 +174,8 @@ namespace AppStudio.Data
                         return String.Format("{0}", Longitude);
                     case "geocoordinate":
                         return String.Format("{0}", GeoCoordinate);
+                    case "defaultwideimageurl":
+                        return DefaultWideImageUrl;
                     default:
                         break;
                 }

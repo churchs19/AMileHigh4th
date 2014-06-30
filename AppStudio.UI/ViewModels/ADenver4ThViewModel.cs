@@ -35,7 +35,7 @@ namespace AppStudio.Data
 
         override public void PinToStart()
         {
-            base.PinToStart("MainPage", "A Denver 4th", "{Content}", "");
+            base.PinToStart("MainPage", "A Denver 4th", "{Content}", "/Assets/ApplicationIcon.png", "/Assets/ApplicationIconWide.png");
         }
 
         override public bool IsShareItemVisible

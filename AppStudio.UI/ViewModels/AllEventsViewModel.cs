@@ -25,7 +25,7 @@ namespace AppStudio.Data
 
         override public void PinToStart()
         {
-            base.PinToStart("AllEventsDetail", "{Title}", "{Summary}", "{ImageUrl}");
+            base.PinToStart("AllEventsDetail", "{Title}", "{Summary}", "{DefaultImageUrl}", "{DefaultWideImageUrl}");
         }
 
         override public bool IsShareItemVisible
@@ -35,7 +35,7 @@ namespace AppStudio.Data
         
         override public void ShareItem()
         {
-            base.ShareItem("{Title}", "{IAmGoing}", "{FeedUrl}", "{ImageUrl}");
+            base.ShareItem("{Title}", "{IAmGoing}", "{FeedUrl}", "{DefaultImageUrl}");
         }
 
         override public bool IsGoToSourceVisible

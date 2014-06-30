@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 using AppStudio.Data;
 using AppStudio.Services;
+using AppStudio.Data.DataSchemas;
 
 namespace AppStudio
 {
@@ -95,7 +96,7 @@ namespace AppStudio
         }
     }
 
-    abstract public class ViewModelBase<T> : ViewModelBase where T : BindableSchemaBase
+    abstract public class ViewModelBase<T> : ViewModelBase where T : BindableLinkSchemaBase
     {
         protected ObservableCollection<T> _items = null;
 
@@ -280,7 +281,7 @@ namespace AppStudio
             }
         }
 
-        protected void PinToStart(string path, string titleToShare, string messageToShare, string imageToShare)
+        protected void PinToStart(string path, string titleToShare, string messageToShare, string imageToShare, string wideImageToShare)
         {
             var currentItem = GetCurrentItem();
             if (currentItem != null)
@@ -297,6 +298,8 @@ namespace AppStudio
                     BackContent = GetBindingValue(messageToShare).Truncate(128),
                     BackgroundImagePath = GetBindingValue(imageToShare),
                     BackBackgroundImagePath = GetBindingValue(imageToShare),
+                    WideBackgroundImagePath = GetBindingValue(wideImageToShare),
+                    WideBackBackgroundImagePath = GetBindingValue(wideImageToShare),
                     Count = 0
                 };
                 TileServices.PinTostart(path, tileInfo, SelectedItem);
@@ -363,6 +366,14 @@ namespace AppStudio
             get
             {
                 return "/Assets/AllFilter.png";
+            }
+        }
+
+        virtual public string FilterLabel
+        {
+            get
+            {
+                return "All";
             }
         }
 

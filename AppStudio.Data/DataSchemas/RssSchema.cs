@@ -84,12 +84,17 @@ namespace AppStudio.Data
 
         public override string DefaultImageUrl
         {
-            get { return ImageUrl; }
+            get { return string.IsNullOrWhiteSpace(ImageUrl) ? "/Assets/ApplicationIcon.png" : ImageUrl; }
         }
 
         public override string DefaultLink
         {
             get { return FeedUrl; }
+        }
+
+        public override string DefaultWideImageUrl
+        {
+            get { return string.IsNullOrWhiteSpace(ImageUrl) ? "/Assets/ApplicationIconWide.png" : ImageUrl; }
         }
 
         override public string GetValue(string fieldName)
@@ -124,6 +129,8 @@ namespace AppStudio.Data
                         return String.Format("{0}", DefaultSummary);
                     case "defaultimageurl":
                         return String.Format("{0}", DefaultImageUrl);
+                    case "defaultwideimageurl":
+                        return String.Format("{0}", DefaultWideImageUrl);
                     default:
                         break;
                 }

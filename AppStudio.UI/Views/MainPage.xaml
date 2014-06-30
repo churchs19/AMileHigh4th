@@ -96,7 +96,7 @@
                                            Command="{Binding ElementName=Container, Path=SelectedItem.Content.ShareItemCommand}"
                                            IsVisible="{Binding ElementName=Container, Path=SelectedItem.Content.IsShareItemVisible}" 
                                            IconUri="Assets/Share-01.png"/>
-                <appBar:ApplicationBarIconButton Text="Filter"
+                <appBar:ApplicationBarIconButton Text="{Binding ElementName=Container, Path=SelectedItem.Content.FilterLabel}"
                                            Command="{Binding ElementName=Container, Path=SelectedItem.Content.ToggleFilterCommand}"
                                            IsVisible="{Binding IsFilterItemVisible}" 
                                            IconUri="{Binding ElementName=Container, Path=SelectedItem.Content.FilterTypeImage}"/>

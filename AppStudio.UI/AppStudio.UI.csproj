@@ -118,6 +118,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\ApplicationIconsSmall.png" />
+    <Content Include="Assets\ApplicationIconWide.png" />
     <Content Include="Assets\Camera-01.png" />
     <Content Include="Assets\Icons\Dark\GoToSource.png" />
     <Content Include="Assets\Icons\Dark\LockScreen.png" />

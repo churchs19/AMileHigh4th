@@ -25,7 +25,7 @@ namespace AppStudio.Data
 
         override public void PinToStart()
         {
-            base.PinToStart("PhotosDetail", "{DefaultTitle}", "{DefaultSummary}", "{DefaultImageUrl}");
+            base.PinToStart("PhotosDetail", "{DefaultTitle}", "{DefaultSummary}", "{DefaultImageUrl}", "{DefaultWideImageUrl}");
         }
 
         override public bool IsShareItemVisible

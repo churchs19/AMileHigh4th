@@ -78,6 +78,16 @@ namespace AppStudio.Data
             NavigationServices.NavigateToPage("FeaturedEventsDetail");
         }
 
+        override public bool IsPinToStartVisible
+        {
+            get { return ViewType == ViewTypes.Detail; }
+        }
+
+        override public void PinToStart()
+        {
+            base.PinToStart("FeaturedEventsDetail", "{Event_Name}", "{Event_Description}", "{DefaultImageUrl}", "{DefaultWideImageUrl}");
+        }
+
         private EventTypeFilter _eventType = EventTypeFilter.All;
         public EventTypeFilter EventType
         {
@@ -88,6 +98,7 @@ namespace AppStudio.Data
                 {
                     FilterItems();
                     OnPropertyChanged("FilterTypeImage");
+                    OnPropertyChanged("FilterLabel");
                 }
             }
         }
@@ -142,6 +153,14 @@ namespace AppStudio.Data
                     return "/Assets/PaidFilter.png";
                 else
                     return "/Assets/FreeFilter.png";
+            }
+        }
+
+        public override string FilterLabel
+        {
+            get
+            {
+                return EventType.ToString();
             }
         }
     }
