@@ -10,6 +10,7 @@ using Microsoft.Phone.Shell;
 using Microsoft.Phone.Scheduler;
 
 using AppStudio.Resources;
+using System.Xml.Linq;
 
 namespace AppStudio
 {
@@ -88,6 +89,9 @@ namespace AppStudio
         {
             // FAST RESUME: When a new instance of the app is launched, clear all deactivation settings
             RemoveCurrentDeactivationSettings();
+            var versionAttrib = XDocument.Load("WMAppManifest.xml").Root.Element("App").Attribute("Version").Value;
+            FlurryWP8SDK.Api.StartSession("S2PHS3W8ZX8VFQVFT9FM");
+            FlurryWP8SDK.Api.SetVersion(versionAttrib);
         }
 
         // Code to execute when the application is activated (brought to foreground)
@@ -105,6 +109,10 @@ namespace AppStudio
             {
                 RestoreSessionType();
             }
+
+            var versionAttrib = XDocument.Load("WMAppManifest.xml").Root.Element("App").Attribute("Version").Value;
+            FlurryWP8SDK.Api.StartSession("S2PHS3W8ZX8VFQVFT9FM");
+            FlurryWP8SDK.Api.SetVersion(versionAttrib);        
         }
 
         // Code to execute when the application is deactivated (sent to background)
@@ -113,6 +121,7 @@ namespace AppStudio
         {
             // FAST RESUME: When the applicaiton is deactivated, save the current deactivation settings to isolated storage
             SaveCurrentDeactivationSettings();
+            FlurryWP8SDK.Api.EndSession();
         }
 
         // Code to execute when the application is closing (eg, user hit Back)
@@ -121,6 +130,7 @@ namespace AppStudio
         {
             // When the application closes, delete any deactivation settings from isolated storage
             RemoveCurrentDeactivationSettings();
+            FlurryWP8SDK.Api.EndSession();
         }
 
         // Code to execute if a navigation fails

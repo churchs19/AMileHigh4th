@@ -279,6 +279,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Cimbalino.Phone.Toolkit.Background.3.2.3\lib\wp8\Cimbalino.Phone.Toolkit.Background.dll</HintPath>
     </Reference>
+    <Reference Include="FlurryWP8SDK">
+      <HintPath>..\Lib\Flurry WindowsPhone SDK vWP8 3.1.2\FlurryWP8SDK.dll</HintPath>
+    </Reference>
     <Reference Include="MyToolkit, Version=2.0.14.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\MyToolkit.2.0.14.0\lib\portable-win+net40+sl40+wp71\MyToolkit.dll</HintPath>
