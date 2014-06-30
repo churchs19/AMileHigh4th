@@ -40,7 +40,7 @@ namespace AppStudio.Views.Controls
             var obj =
                 children.FirstOrDefault(x => x.GetType() == typeof(MapItemsControl)) as MapItemsControl;
 
-            obj.ItemsSource = model.Items;
+            obj.ItemsSource = model.FilteredItems;
         }
 
         private void EventName_Tap(object sender, System.Windows.Input.GestureEventArgs e)
@@ -60,9 +60,9 @@ namespace AppStudio.Views.Controls
                         var model = this.DataContext as FeaturedEventsMapViewModel;
                         if (model != null)
                         {
-                            model.Items.Remove(item);
+                            model.FilteredItems.Remove(item);
                             item.IsSelected = true;
-                            model.Items.Add(item);
+                            model.FilteredItems.Add(item);
                         }
                     }
                 }

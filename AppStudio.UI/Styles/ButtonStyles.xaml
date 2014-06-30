@@ -3,6 +3,13 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone">
 
+    <ControlTemplate x:Key="FilterButton" TargetType="Button">
+        <Grid Width="48" Height="48" Background="{StaticResource TransparentBrush}" MaxWidth="48" MinHeight="48" MinWidth="48" MaxHeight="48">
+            <Image Source="{Binding Content, RelativeSource={RelativeSource TemplatedParent}}">
+            </Image>
+        </Grid>
+    </ControlTemplate>
+
     <Style x:Key="MailActionButton" TargetType="Button">
         <Setter Property="VerticalAlignment" Value="Top"/>
         <Setter Property="FontFamily" Value="{StaticResource PhoneFontFamilyNormal}"/>

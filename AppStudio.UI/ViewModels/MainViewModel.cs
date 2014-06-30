@@ -76,7 +76,7 @@ namespace AppStudio
         {
             get
             {
-                if (SelectedItem == null || SelectedItem == ADenver4ThModel)
+                if (SelectedItem == null || SelectedItem == ADenver4ThModel || SelectedItem == FeaturedEventsModel || SelectedItem == FeaturedEventsMapModel)
                 {
                     return true;
                 }
@@ -84,15 +84,24 @@ namespace AppStudio
             }
         }
 
+        public bool IsFilterVisible
+        {
+            get
+            {
+                return (SelectedItem == FeaturedEventsModel || SelectedItem == FeaturedEventsMapModel);
+            }
+        }
+
         public bool IsAboutVisible
         {
-            get { return SelectedItem == null || SelectedItem == ADenver4ThModel; }
+            get { return true; }
         }
 
         public void UpdateAppBar()
         {
             OnPropertyChanged("IsAppBarVisible");
             OnPropertyChanged("IsAboutVisible");
+            OnPropertyChanged("IsFilterVisible");
         }
 
         /// <summary>

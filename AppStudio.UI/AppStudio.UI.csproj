@@ -93,11 +93,18 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Converters\BooleanToAppBarStateConverter.cs" />
+    <Compile Include="Views\AboutThisAppPage.xaml.cs">
+      <DependentUpon>AboutThisAppPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Commands\DirectionsCommand.cs" />
     <Compile Include="Commands\EventLinkCommand.cs" />
+    <Compile Include="Commands\OtherAppsCommand.cs" />
+    <Compile Include="Commands\RateThisAppCommand.cs" />
+    <Compile Include="Commands\SendAnEmailCommand.cs" />
     <Compile Include="Commands\ShareCommand.cs" />
     <Compile Include="Commands\SharePhotoCommand.cs" />
     <Compile Include="Converters\BooleanToVisibilityConverter.cs" />
@@ -127,6 +134,7 @@
     <Content Include="Assets\AlignmentGrid.png" />
     <Content Include="Assets\NoImage.png" />
     <Content Include="Assets\Web.png" />
+    <Content Include="Images\CompanyLogo.png" />
     <Content Include="Views\DataTemplates\ADenver4Th.xaml" />
     <Content Include="Views\DataTemplates\FeaturedEvents.xaml" />
     <Content Include="Views\DataTemplates\FeaturedEvents1Detail.xaml" />
@@ -180,9 +188,6 @@
     <Compile Include="ViewModels\MenuSectionViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Views\AboutThisAppPage.xaml.cs">
-      <DependentUpon>AboutThisAppPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\Controls\FeaturedEventsMap.xaml.cs">
       <DependentUpon>FeaturedEventsMap.xaml</DependentUpon>
     </Compile>
@@ -279,6 +284,7 @@
     <Reference Include="RateMyApp">
       <HintPath>..\packages\RateMyApp.1.1.0\lib\sl4-wp71\RateMyApp.dll</HintPath>
     </Reference>
+    <Reference Include="Telerik.Windows.Controls.Data, Version=2014.2.617.3040, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL" />
     <Reference Include="Telerik.Windows.Controls.Primitives, Version=2014.2.617.3040, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
       <HintPath>..\lib\RCWP\2014.2.617.3040\Telerik.Windows.Controls.Primitives.dll</HintPath>
       <Private>True</Private>
@@ -287,6 +293,7 @@
       <HintPath>..\lib\RCWP\2014.2.617.3040\Telerik.Windows.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Telerik.Windows.Data, Version=2014.2.617.3040, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL" />
     <Reference Include="WPAppStudio.Shared2.dll">
       <HintPath>..\Lib\WPAppStudio.Shared2.dll</HintPath>
     </Reference>
@@ -322,6 +329,11 @@
   <ItemGroup>
     <Content Include="Assets\Directions.png" />
     <Content Include="Assets\Share-01.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\AllFilter.png" />
+    <Content Include="Assets\FreeFilter.png" />
+    <Content Include="Assets\PaidFilter.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).$(TargetFrameworkVersion).Overrides.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).CSharp.targets" />

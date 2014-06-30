@@ -263,6 +263,11 @@ namespace AppStudio
             get { return new DelegateCommand(Refresh); }
         }
 
+        public ICommand ToggleFilterCommand
+        {
+            get { return new DelegateCommand(ToggleFilter); }
+        }
+
         //
         // Command implementation helpers
         //
@@ -350,6 +355,16 @@ namespace AppStudio
         }
 
         virtual protected void NavigateToSelectedItem() { }
+
+        virtual protected void ToggleFilter() { }
+
+        virtual public string FilterTypeImage
+        {
+            get
+            {
+                return "/Assets/AllFilter.png";
+            }
+        }
 
         abstract protected string CacheKey { get; }
         abstract protected IDataSource<T> CreateDataSource();

@@ -21,16 +21,19 @@
         <DataTemplate x:Key="PushpinTemplate">
             <StackPanel Orientation="Vertical" 
                         HorizontalAlignment="Center"
-                        x:Name="PushpinContainer" RenderTransformOrigin="0,1">
+                        x:Name="PushpinContainer" RenderTransformOrigin="0,1" MaxWidth="300">
                 <TextBlock x:Name="EventName"
                            Text="{Binding Event_Name}" 
                            Tap="EventName_Tap"
-                           Tag="{Binding}" TextWrapping="Wrap" TextAlignment="Center" Margin="5"/>
+                           Tag="{Binding}" 
+                           TextWrapping="Wrap" 
+                           TextAlignment="Center" 
+                           Margin="5"/>
                 <StackPanel Orientation="Vertical"
                             HorizontalAlignment="Center"
                             Visibility="{Binding IsSelected, Converter={StaticResource BoolToVisibilityConverter}}"
                             x:Name="DetailsPanel">
-                    <Image Source="{Binding Event_Image}" MaxHeight="200" MaxWidth="150"/>
+                    <Image Source="{Binding Event_Image}" MaxHeight="200" MaxWidth="200"/>
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition />

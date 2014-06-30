@@ -3,6 +3,8 @@ using System.Xml.Linq;
 using System.Windows.Input;
 
 using AppStudio.Services;
+using AppStudio.Commands;
+using Microsoft.Phone.Tasks;
 
 namespace AppStudio.Data
 {
@@ -10,6 +12,13 @@ namespace AppStudio.Data
     {
         static private AboutThisAppViewModel _current = null;
         static private ShareServices _shareService = new ShareServices();
+
+        private AboutThisAppViewModel()
+        {
+            RateAppCommand = new RateThisAppCommand();
+            SupportEmailCommand = new SendAnEmailCommand();
+            OtherAppsCommand = new OtherAppsCommand();
+        }
 
         static public AboutThisAppViewModel Current
         {
@@ -36,9 +45,17 @@ namespace AppStudio.Data
         {
             get
             {
-                return "There’s no better place to be over the 4th of July than in Denver! You’ll be trea" +
-    "ted to festivals, concerts, pro sports – and of course all the brilliant firewor" +
-    "ks displays you could ever wish for.";
+                return "There’s no better place to be over the 4th of July than in Denver!\n\n"+
+                    "This app uses data from Visit Denver, but is in no way affiliated with Visit Denver or the City and County of Denver." +
+                    "This app and its developer are not responsible for any inaccurate information.";
+            }
+        }
+
+        public bool AppInMarketplace
+        {
+            get
+            {
+                return _shareService.AppExistInMarketPlace();
             }
         }
 
@@ -48,12 +65,26 @@ namespace AppStudio.Data
             {
                 return new RelayCommand<string>((src) =>
                 {
-                    string appUri = String.Format("http://xap.winappstudio.com/Job/GetXap?ticket={0}", "416180.nrcuox");
                     if (_shareService.AppExistInMarketPlace())
                     {
-                        appUri = Windows.ApplicationModel.Store.CurrentApp.LinkUri.AbsoluteUri;
+                        string appUri = Windows.ApplicationModel.Store.CurrentApp.LinkUri.AbsoluteUri;
+                        _shareService.Share("A Mile High 4th", "Check out A Mile High 4th in the Windows Phone Store!", appUri, string.Empty);
                     }
-                    _shareService.Share("app", "message", appUri, string.Empty);
+                });
+            }
+        }
+
+        public ICommand RateAppCommand { get; private set; }
+        public ICommand SupportEmailCommand { get; private set; }
+        public ICommand OtherAppsCommand { get; private set; }
+        public ICommand GoToSChurchNetCommand {
+            get
+            {
+                return new RelayCommand<string>((param) =>
+                {
+                    WebBrowserTask task = new WebBrowserTask();
+                    task.Uri = new Uri("http://www.s-church.net");
+                    task.Show();
                 });
             }
         }

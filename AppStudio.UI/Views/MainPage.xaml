@@ -12,10 +12,15 @@
     xmlns:interactive="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
     xmlns:maps="clr-namespace:Microsoft.Phone.Maps.Controls;assembly=Microsoft.Phone.Maps"
     xmlns:this="clr-namespace:AppStudio.Views.Controls"
+    xmlns:converters="clr-namespace:AppStudio.Converters"
     Foreground="{StaticResource AppForegroundColor}"
     SupportedOrientations="Portrait" Orientation="Portrait"
     shell:SystemTray.IsVisible="False"
     mc:Ignorable="d">
+    
+    <phone:PhoneApplicationPage.Resources>
+        <converters:BooleanToAppBarStateConverter x:Key="AppBarStateConverter"/>
+    </phone:PhoneApplicationPage.Resources>
 
     <toolkit:TransitionService.NavigationInTransition>
       <toolkit:NavigationInTransition>
@@ -46,7 +51,7 @@
             <phone:PanoramaItem Name="FeaturedEventsMapItem" Content="{Binding FeaturedEventsMapModel}">
                 <phone:PanoramaItem.HeaderTemplate>
                     <DataTemplate>
-                        <StackPanel Orientation="Horizontal" Margin="0,7,0,0">
+                        <StackPanel Orientation="Horizontal" Margin="0,7,0,0" Width="410">
                             <TextBlock Text="Map" FontSize="56" Foreground="{StaticResource AppForegroundColor}"/>
                         </StackPanel>
                     </DataTemplate>
@@ -66,7 +71,7 @@
 
       <!-- AppBar Binding -->
       <interactive:Interaction.Behaviors>
-        <appBar:ApplicationBarBehavior x:Name="appBar" IsVisible="{Binding IsAppBarVisible}" BackgroundColor="{StaticResource AppBarBackgroundColor}" ForegroundColor="White" Mode="Minimized">
+        <appBar:ApplicationBarBehavior x:Name="appBar" IsVisible="{Binding IsAppBarVisible}" BackgroundColor="{StaticResource AppBarBackgroundColor}" ForegroundColor="White" Mode="{Binding IsFilterVisible, Converter={StaticResource AppBarStateConverter}}">
 
           <appBar:ApplicationBarIconButton Text="{Binding LocalizedResources.SpeakText, Source={StaticResource LocalizedStrings}}"
                                            Command="{Binding ElementName=Container, Path=SelectedItem.Content.SpeakTextCommand}"
@@ -90,8 +95,12 @@
           <appBar:ApplicationBarIconButton Text="{Binding LocalizedResources.ShareItem, Source={StaticResource LocalizedStrings}}"
                                            Command="{Binding ElementName=Container, Path=SelectedItem.Content.ShareItemCommand}"
                                            IsVisible="{Binding ElementName=Container, Path=SelectedItem.Content.IsShareItemVisible}" 
-                                           IconUri="/AppStudio;component/Assets/Share-01.png"/>
-          <appBar:ApplicationBarBehavior.MenuItems>
+                                           IconUri="Assets/Share-01.png"/>
+                <appBar:ApplicationBarIconButton Text="Filter"
+                                           Command="{Binding ElementName=Container, Path=SelectedItem.Content.ToggleFilterCommand}"
+                                           IsVisible="{Binding IsFilterItemVisible}" 
+                                           IconUri="{Binding ElementName=Container, Path=SelectedItem.Content.FilterTypeImage}"/>
+            <appBar:ApplicationBarBehavior.MenuItems>
             <appBar:ApplicationBarMenuItem Text="{Binding LocalizedResources.About, Source={StaticResource LocalizedStrings}}"
                                          Command="{Binding AboutCommand}"
                                          IsVisible="{Binding IsAboutVisible}" />

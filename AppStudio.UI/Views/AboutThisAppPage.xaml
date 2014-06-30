@@ -1,55 +1,133 @@
-<phone:PhoneApplicationPage
-    x:Class="AppStudio.AboutThisAppPage"
+﻿<phone:PhoneApplicationPage 
+    x:Class="AppStudio.Views.AboutThisAppPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
     xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:mytoolkit="clr-namespace:MyToolkit.Controls;assembly=MyToolkit.Extended"
+    xmlns:viewModels="clr-namespace:AppStudio.ViewModels"
+    xmlns:converters="clr-namespace:AppStudio.Converters"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
-    Foreground="{StaticResource PhoneForegroundBrush}"
+    Foreground="{StaticResource AppForegroundColor}"
     SupportedOrientations="Portrait" Orientation="Portrait"
-    mc:Ignorable="d">
+    mc:Ignorable="d" d:DesignHeight="768" d:DesignWidth="480"
+    shell:SystemTray.IsVisible="True">
+    
+    <phone:PhoneApplicationPage.Resources>
+        <converters:BooleanToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
+    </phone:PhoneApplicationPage.Resources>
 
-  <Grid x:Name="LayoutRoot" Background="{StaticResource AppBackground}">
-    <Grid.RowDefinitions>
-      <RowDefinition Height="Auto"/>
-      <RowDefinition Height="*"/>
-    </Grid.RowDefinitions>
+    <Grid x:Name="LayoutRoot" Background="{StaticResource AppBackground}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
 
-    <StackPanel Margin="10,-10" Orientation="Horizontal">
-      <Image Margin="0,16,0,0" Width="85" Height="85" Source="{StaticResource AppLogoImage}" HorizontalAlignment="Left" Stretch="Uniform" />
-      <TextBlock Text="{StaticResource AppTitle}" Foreground="{StaticResource AppTitleColor}" CharacterSpacing="-35" FontFamily="{StaticResource AppTitleFontFamily}" FontSize="{StaticResource AppTitleFontSize}" />
-    </StackPanel>
+        <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
+            <TextBlock x:Name="ApplicationTitle" Text="A Mile High 4th" Style="{StaticResource PhoneTextNormalStyle}" Foreground="{StaticResource AppHeaderColor}"/>
+            <TextBlock x:Name="PageTitle" Text="about" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}" Foreground="{StaticResource AppHeaderColor}"/>
+        </StackPanel>
 
-    <Grid x:Name="ContentPanel" Grid.Row="1">
-      <phone:Pivot HeaderTemplate="{StaticResource AboutItemTemplate}">
-        <phone:PivotItem Header="about" Margin="12,0,12,24">
-          <Grid>
+        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
             <Grid.RowDefinitions>
-              <RowDefinition Height="*"/>
-              <RowDefinition Height="Auto"/>
-              <RowDefinition Height="Auto"/>
-              <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition />
             </Grid.RowDefinitions>
-            <ScrollViewer Grid.Row="0">
-              <mytoolkit:FixedHtmlTextBlock Margin="12,20" Html="{Binding AboutModel.AboutText}"/>
-            </ScrollViewer>
-            <TextBlock Grid.Row="1" Margin="12,24,12,0">
-              <Run Text="App version:"/>
-              <Run Text="{Binding AboutModel.AppVersion}" />
-            </TextBlock>
-            <TextBlock Grid.Row="2" Margin="12,0,12,12">
-              <Run Text="Developed by:" />
-              <Run Text="{Binding AboutModel.DeveloperName}"/>
-            </TextBlock>
-            <Button Grid.Row="3" Content="share app" Command="{Binding AboutModel.ShareAppCommand}"></Button>
-          </Grid>
-        </phone:PivotItem>
-      </phone:Pivot>
-    </Grid>
-  </Grid>
 
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock 
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="2"
+                    Text="A Mile High 4th" 
+                    Margin="12,0,12,0" 
+                    FontSize="{StaticResource PhoneFontSizeLarge}" 
+                    FontFamily="{StaticResource PhoneFontFamilySemiBold}"
+                    HorizontalAlignment="Left"/>
+                <TextBlock 
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    Text="Version" 
+                    Margin="12,0,5,0" 
+                    FontSize="{StaticResource PhoneFontSizeNormal}" 
+                    HorizontalAlignment="Left"/>
+                <TextBlock 
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    Text="{Binding AppVersion}" 
+                    Margin="0,0,12,0" 
+                    FontSize="{StaticResource PhoneFontSizeNormal}" 
+                    HorizontalAlignment="Left"/>
+            </Grid>
+            
+            <TextBlock 
+                Grid.Row="1" 
+                Text="{Binding AboutText}"
+                Margin="12,24,12,24" 
+                TextWrapping="Wrap" 
+                Foreground="{StaticResource AppForegroundColor}" 
+                FontSize="{StaticResource PhoneFontSizeNormal}" />
+            <HyperlinkButton 
+                Grid.Row="2" 
+                Content="technical support/feedback email" 
+                Margin="0,12,0,0" 
+                HorizontalAlignment="Left" 
+                Foreground="{StaticResource AppForegroundColor}" 
+                FontSize="{StaticResource PhoneFontSizeNormal}" 
+                Command="{Binding SupportEmailCommand}"/>
+            <HyperlinkButton 
+                Grid.Row="3"
+                Content="rate this app" 
+                Margin="0,12,0,0" 
+                HorizontalAlignment="Left" 
+                Foreground="{StaticResource AppForegroundColor}" 
+                FontSize="{StaticResource PhoneFontSizeNormal}" 
+                Command="{Binding RateAppCommand}"/>
+            <HyperlinkButton 
+                Grid.Row="4"
+                Content="share this app" 
+                Margin="0,12,0,0" 
+                HorizontalAlignment="Left" 
+                Visibility="{Binding AppInMarketplace,Converter={StaticResource BoolToVisibilityConverter}}"
+                Foreground="{StaticResource AppForegroundColor}" 
+                FontSize="{StaticResource PhoneFontSizeNormal}" 
+                Command="{Binding ShareAppCommand}"/>
+            <HyperlinkButton 
+                Grid.Row="5"
+                Content="other apps by Shane Church" 
+                Margin="0,12,0,0" 
+                HorizontalAlignment="Left" 
+                Foreground="{StaticResource AppForegroundColor}" 
+                FontSize="{StaticResource PhoneFontSizeNormal}" 
+                Command="{Binding OtherAppsCommand}"/>
+            <StackPanel Grid.Row="6" Margin="12,0,12,50" VerticalAlignment="Bottom">
+                <TextBlock 
+                    Text="Copyright © Shane Church 2014" 
+                    Margin="0,12,0,0" 
+                    FontSize="{StaticResource PhoneFontSizeNormal}"/>
+                <HyperlinkButton Content="http://www.s-church.net"
+                    Margin="-10,5,0,0" 
+                    FontSize="{StaticResource PhoneFontSizeNormal}" 
+                    Foreground="{StaticResource AppForegroundColor}"
+                    HorizontalAlignment="Left"
+                    Command="{Binding GoToSChurchNetCommand}"/>
+            </StackPanel>
+        </Grid>
+    </Grid>
+    
 </phone:PhoneApplicationPage>
