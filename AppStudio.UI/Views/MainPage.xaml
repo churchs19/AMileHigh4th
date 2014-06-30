@@ -11,6 +11,7 @@
     xmlns:appBar="clr-namespace:Cimbalino.Phone.Toolkit.Behaviors;assembly=Cimbalino.Phone.Toolkit"
     xmlns:interactive="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
     xmlns:maps="clr-namespace:Microsoft.Phone.Maps.Controls;assembly=Microsoft.Phone.Maps"
+    xmlns:rma="clr-namespace:RateMyApp.Controls;assembly=RateMyApp"
     xmlns:this="clr-namespace:AppStudio.Views.Controls"
     xmlns:converters="clr-namespace:AppStudio.Converters"
     Foreground="{StaticResource AppForegroundColor}"
@@ -69,7 +70,14 @@
       <ProgressBar Grid.Row="0" IsIndeterminate="True" Foreground="{StaticResource AppForegroundColor}" VerticalAlignment="Center" Height="16"
                    Visibility="{Binding ElementName=Container, Path=SelectedItem.Content.ProgressBarVisibility}" />
 
-      <!-- AppBar Binding -->
+        <!-- Feedback overlay -->
+        <rma:FeedbackOverlay x:Name="FeedbackOverlay" 
+                           Grid.Row="0"
+                           FeedbackTo="shane@s=church.net"
+                           ApplicationName="A Mile High 4th"
+                           CompanyName="Shane Church"/>
+
+        <!-- AppBar Binding -->
       <interactive:Interaction.Behaviors>
         <appBar:ApplicationBarBehavior x:Name="appBar" IsVisible="{Binding IsAppBarVisible}" BackgroundColor="{StaticResource AppBarBackgroundColor}" ForegroundColor="White" Mode="{Binding IsFilterVisible, Converter={StaticResource AppBarStateConverter}}">
 
