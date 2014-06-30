@@ -34,7 +34,8 @@ namespace AppStudio
                        IsPinToStartVisible |
                        IsGoToSourceVisible |
                        IsShareItemVisible |
-                       IsRefreshVisible;
+                       IsRefreshVisible | 
+                       IsAboutVisible;
             }
         }
 
@@ -61,6 +62,11 @@ namespace AppStudio
         }
 
         virtual public bool IsRefreshVisible
+        {
+            get { return false; }
+        }
+
+        public bool IsAboutVisible
         {
             get { return false; }
         }

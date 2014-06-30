@@ -55,7 +55,7 @@ namespace AppStudio.Data
         
         override public void ShareItem()
         {
-            base.ShareItem("{DefaultTitle}", "{DefaultSummary}", "{DefaultImageUrl}", "{DefaultImageUrl}");
+            base.ShareItem("{DefaultTitle}", "{IAmGoing}", "{DefaultLink}", "{DefaultImageUrl}");
         }
 
         override protected void NavigateToSelectedItem()

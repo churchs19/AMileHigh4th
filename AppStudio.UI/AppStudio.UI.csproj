@@ -111,7 +111,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Assets\Camera-01.png" />
+    <Content Include="Assets\Camera-01.png" />
     <Content Include="Assets\Icons\Dark\GoToSource.png" />
     <Content Include="Assets\Icons\Dark\LockScreen.png" />
     <Content Include="Assets\Icons\Dark\PinToStart.png" />
@@ -126,7 +126,7 @@
     <Content Include="Assets\Icons\Light\TextToSpeech.png" />
     <Content Include="Assets\AlignmentGrid.png" />
     <Content Include="Assets\NoImage.png" />
-    <Resource Include="Assets\Web.png" />
+    <Content Include="Assets\Web.png" />
     <Content Include="Views\DataTemplates\ADenver4Th.xaml" />
     <Content Include="Views\DataTemplates\FeaturedEvents.xaml" />
     <Content Include="Views\DataTemplates\FeaturedEvents1Detail.xaml" />
@@ -320,8 +320,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Assets\Directions.png" />
-    <Resource Include="Assets\Share-01.png" />
+    <Content Include="Assets\Directions.png" />
+    <Content Include="Assets\Share-01.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).$(TargetFrameworkVersion).Overrides.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).CSharp.targets" />

@@ -40,7 +40,7 @@ namespace AppStudio.Data
 
         override public bool IsShareItemVisible
         {
-            get { return ViewType == ViewTypes.Detail; }
+            get { return false; }
         }
         
         override public void ShareItem()
@@ -50,7 +50,7 @@ namespace AppStudio.Data
 
         override public bool IsSpeakTextVisible
         {
-            get { return ViewType == ViewTypes.Detail; }
+            get { return false; }
         }
         
         override public void SpeakText()

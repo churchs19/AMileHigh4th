@@ -1,3 +1,4 @@
+using AppStudio.Data.DataSchemas;
 using System;
 
 namespace AppStudio.Data
@@ -5,7 +6,7 @@ namespace AppStudio.Data
     /// <summary>
     /// Implementation of the PhotosSchema class.
     /// </summary>
-    public class PhotosSchema : BindableSchemaBase
+    public class PhotosSchema : BindableLinkSchemaBase
     {
         private string _title;
         private string _caption;
@@ -40,6 +41,11 @@ namespace AppStudio.Data
         }
 
         public override string DefaultImageUrl
+        {
+            get { return Image; }
+        }
+
+        public override string DefaultLink
         {
             get { return Image; }
         }

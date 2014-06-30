@@ -66,13 +66,17 @@
                                                  Command="{Binding GoToSourceCommand}"
                                                  IsVisible="{Binding IsGoToSourceVisible}"
                                                  IconUri="Assets/Icons/Dark/GoToSource.png" />
-                
+
+                <appBar:ApplicationBarIconButton Text="{Binding LocalizedResources.ShareItem, Source={StaticResource LocalizedStrings}}"
+                                           Command="{Binding ElementName=Container, Path=SelectedItem.Content.ShareItemCommand}"
+                                           IsVisible="{Binding ElementName=Container, Path=SelectedItem.Content.IsShareItemVisible}" 
+                                           IconUri="Assets/Share-01.png"/>
                 <appBar:ApplicationBarBehavior.MenuItems>
-                    <appBar:ApplicationBarMenuItem Text="{Binding LocalizedResources.ShareItem, Source={StaticResource LocalizedStrings}}"
-                                                 Command="{Binding ShareItemCommand}"
-                                                 IsVisible="{Binding IsShareItemVisible}" />
+                    <appBar:ApplicationBarMenuItem Text="{Binding LocalizedResources.About, Source={StaticResource LocalizedStrings}}"
+                                         Command="{Binding AboutCommand}"
+                                         IsVisible="{Binding IsAboutVisible}" />
                 </appBar:ApplicationBarBehavior.MenuItems>
-                
+
             </appBar:ApplicationBarBehavior>
         </interactive:Interaction.Behaviors>
     </Grid>

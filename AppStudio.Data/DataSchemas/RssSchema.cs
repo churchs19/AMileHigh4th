@@ -1,3 +1,4 @@
+using AppStudio.Data.DataSchemas;
 using System;
 
 namespace AppStudio.Data
@@ -5,7 +6,7 @@ namespace AppStudio.Data
     /// <summary>
     /// Implementation of the RssSchema class.
     /// </summary>
-    public class RssSchema : BindableSchemaBase
+    public class RssSchema : BindableLinkSchemaBase
     {
         private string _title;
         private string _summary;
@@ -84,6 +85,11 @@ namespace AppStudio.Data
         public override string DefaultImageUrl
         {
             get { return ImageUrl; }
+        }
+
+        public override string DefaultLink
+        {
+            get { return FeedUrl; }
         }
 
         override public string GetValue(string fieldName)

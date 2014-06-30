@@ -35,7 +35,7 @@ namespace AppStudio.Data
         
         override public void ShareItem()
         {
-            base.ShareItem("{Title}", "{Summary}", "{FeedUrl}", "{ImageUrl}");
+            base.ShareItem("{Title}", "{IAmGoing}", "{FeedUrl}", "{ImageUrl}");
         }
 
         override public bool IsGoToSourceVisible

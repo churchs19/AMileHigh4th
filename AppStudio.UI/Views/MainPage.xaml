@@ -83,20 +83,15 @@
                                            IsVisible="{Binding ElementName=Container, Path=SelectedItem.Content.IsRefreshVisible}"
                                            IconUri="Assets/Icons/Dark/Refresh.png" />
 
-          <appBar:ApplicationBarIconButton Text="{Binding LocalizedResources.GoToSource, Source={StaticResource LocalizedStrings}}"
+                <appBar:ApplicationBarIconButton Text="{Binding LocalizedResources.GoToSource, Source={StaticResource LocalizedStrings}}"
                                            Command="{Binding ElementName=Container, Path=SelectedItem.Content.GoToSourceCommand}"
                                            IsVisible="{Binding ElementName=Container, Path=SelectedItem.Content.IsGoToSourceVisible}"
                                            IconUri="Assets/Icons/Dark/GoToSource.png" />
-
-          <appBar:ApplicationBarIconButton Text="{Binding LocalizedResources.LockScreen, Source={StaticResource LocalizedStrings}}"
-                                           Command="{Binding LockScreenCommand}"
-                                           IsVisible="{Binding IsLockScreenVisible}"
-                                           IconUri="Assets/Icons/Dark/LockScreen.png" />
-
+          <appBar:ApplicationBarIconButton Text="{Binding LocalizedResources.ShareItem, Source={StaticResource LocalizedStrings}}"
+                                           Command="{Binding ElementName=Container, Path=SelectedItem.Content.ShareItemCommand}"
+                                           IsVisible="{Binding ElementName=Container, Path=SelectedItem.Content.IsShareItemVisible}" 
+                                           IconUri="/AppStudio;component/Assets/Share-01.png"/>
           <appBar:ApplicationBarBehavior.MenuItems>
-            <appBar:ApplicationBarMenuItem Text="{Binding LocalizedResources.ShareItem, Source={StaticResource LocalizedStrings}}"
-                                         Command="{Binding ElementName=Container, Path=SelectedItem.Content.ShareItemCommand}"
-                                         IsVisible="{Binding ElementName=Container, Path=SelectedItem.Content.IsShareItemVisible}" />
             <appBar:ApplicationBarMenuItem Text="{Binding LocalizedResources.About, Source={StaticResource LocalizedStrings}}"
                                          Command="{Binding AboutCommand}"
                                          IsVisible="{Binding IsAboutVisible}" />

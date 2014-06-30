@@ -1,3 +1,4 @@
+using AppStudio.Data.DataSchemas;
 using System;
 
 namespace AppStudio.Data
@@ -5,7 +6,7 @@ namespace AppStudio.Data
     /// <summary>
     /// Implementation of the MenuSchema class.
     /// </summary>
-    public class MenuSchema : BindableSchemaBase
+    public class MenuSchema : BindableLinkSchemaBase
     {
         private string _name;
         private string _title;
@@ -56,6 +57,11 @@ namespace AppStudio.Data
         public override string DefaultImageUrl
         {
             get { return Icon; }
+        }
+
+        public override string DefaultLink
+        {
+            get { return null; }
         }
 
         override public string GetValue(string fieldName)

@@ -84,11 +84,6 @@ namespace AppStudio
             }
         }
 
-        public bool IsLockScreenVisible
-        {
-            get { return SelectedItem == null || SelectedItem == ADenver4ThModel; }
-        }
-
         public bool IsAboutVisible
         {
             get { return SelectedItem == null || SelectedItem == ADenver4ThModel; }
@@ -97,7 +92,6 @@ namespace AppStudio
         public void UpdateAppBar()
         {
             OnPropertyChanged("IsAppBarVisible");
-            OnPropertyChanged("IsLockScreenVisible");
             OnPropertyChanged("IsAboutVisible");
         }
 

@@ -1,3 +1,4 @@
+using AppStudio.Data.DataSchemas;
 using System;
 using System.Device.Location;
 using System.Windows.Input;
@@ -7,7 +8,7 @@ namespace AppStudio.Data
     /// <summary>
     /// Implementation of the FeaturedEventsSchema class.
     /// </summary>
-    public class FeaturedEventsSchema : BindableSchemaBase
+    public class FeaturedEventsSchema : BindableLinkSchemaBase
     {
         private string _event_Name;
         private string _event_Date;
@@ -124,12 +125,17 @@ namespace AppStudio.Data
 
         public override string DefaultSummary
         {
-            get { return Event_Date; }
+            get { return Event_Description; }
         }
 
         public override string DefaultImageUrl
         {
             get { return Event_Image; }
+        }
+
+        public override string DefaultLink
+        {
+            get { return Link_1; }
         }
 
         override public string GetValue(string fieldName)

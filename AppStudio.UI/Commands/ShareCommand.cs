@@ -26,7 +26,7 @@ namespace AppStudio.Commands
             if (item != null)
             {
                 ShareServices svc = new ShareServices();
-                svc.Share(item.Event_Name, item.Event_Description, item.Link_1, item.Event_Image);
+                svc.Share(item.Event_Name, item.IAmGoing, item.Link_1, item.Event_Image);
             }
         }
     }

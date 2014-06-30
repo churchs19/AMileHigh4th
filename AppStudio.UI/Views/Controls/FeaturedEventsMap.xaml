@@ -25,7 +25,7 @@
                 <TextBlock x:Name="EventName"
                            Text="{Binding Event_Name}" 
                            Tap="EventName_Tap"
-                           Tag="{Binding}"/>
+                           Tag="{Binding}" TextWrapping="Wrap" TextAlignment="Center" Margin="5"/>
                 <StackPanel Orientation="Vertical"
                             HorizontalAlignment="Center"
                             Visibility="{Binding IsSelected, Converter={StaticResource BoolToVisibilityConverter}}"
@@ -41,29 +41,29 @@
                         <telerikPrimitives:RadImageButton x:Name="buttonEventLink" 
 													  Grid.Column="0"
 												      ButtonShape="Ellipse" 
-													  ButtonType="Custom" 
-													  RestStateImageSource="/AppStudio;component/Assets/Web.png"
+													  ButtonType="Custom"
                                                       Command="{Binding EventLinkCommand}"
-                                                      CommandParameter="{Binding}"/>
+                                                      CommandParameter="{Binding}" 
+                                                      RestStateImageSource="/Assets/Icons/Dark/GoToSource.png"/>
                         <telerikPrimitives:RadImageButton x:Name="buttonDirections"
 													  Grid.Column="1" 
 												      ButtonShape="Ellipse" 
 													  ButtonType="Custom" 
-													  RestStateImageSource="/AppStudio;component/Assets/Directions.png"
+													  RestStateImageSource="/Assets/Directions.png"
                                                       Command="{Binding DirectionsCommand}"
                                                       CommandParameter="{Binding}"/>
                         <telerikPrimitives:RadImageButton x:Name="buttonShare" 
 													  Grid.Column="2"
 												      ButtonShape="Ellipse" 
 													  ButtonType="Custom" 
-													  RestStateImageSource="/AppStudio;component/Assets/Share-01.png"
+													  RestStateImageSource="/Assets/Share-01.png"
                                                       Command="{Binding ShareCommand}"
                                                       CommandParameter="{Binding}"/>
                         <telerikPrimitives:RadImageButton x:Name="buttonSharePicture" 
 													  Grid.Column="3"
 												      ButtonShape="Ellipse" 
 													  ButtonType="Custom" 
-													  RestStateImageSource="/AppStudio;component/Assets/Camera-01.png"
+													  RestStateImageSource="/Assets/Camera-01.png"
                                                       Command="{Binding SharePhotoCommand}"
                                                       CommandParameter="{Binding}"/>
                     </Grid>

@@ -1,3 +1,4 @@
+using AppStudio.Data.DataSchemas;
 using System;
 
 namespace AppStudio.Data
@@ -5,7 +6,7 @@ namespace AppStudio.Data
     /// <summary>
     /// Implementation of the HtmlSchema class.
     /// </summary>
-    public class HtmlSchema : BindableSchemaBase
+    public class HtmlSchema : BindableLinkSchemaBase
     {
         private string _content;
 
@@ -26,6 +27,11 @@ namespace AppStudio.Data
         }
 
         public override string DefaultImageUrl
+        {
+            get { return null; }
+        }
+
+        public override string DefaultLink
         {
             get { return null; }
         }
